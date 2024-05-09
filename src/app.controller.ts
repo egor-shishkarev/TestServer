@@ -7,6 +7,8 @@ export class AppController {
 
   @Get()
   getHello(): string {
+    console.log(this.appService.getRootPath());
+    console.log('Trying to get');
     return this.appService.getHello();
   }
 }
