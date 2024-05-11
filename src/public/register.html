@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <title>Форма с POST запросом</title>
 </head>
 <body>
-    <h1>Форма регистрации</h1>
-    <form id="registrationForm">
+    <h1>Форма с POST запросом</h1>
+    <form id="myForm">
         <div>
             <label for="username">Логин:</label>
             <input type="text" id="username" name="username" required>
@@ -16,11 +16,11 @@
             <label for="password">Пароль:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit" onclick="submitForm(event)">Зарегистрироваться</button>
+        <button type="submit">Отправить POST запрос</button>
     </form>
 
     <script>
-        function submitForm(event) {
+        document.getElementById('myForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Предотвращаем отправку формы по умолчанию
 
             // Получаем значения полей формы
@@ -33,15 +33,25 @@
                 password: password
             };
 
-            // Отправляем POST-запрос на указанный адрес
-            fetch('http://87.242.119.17', {
+            // Отправляем POST-запрос на нужный IP адрес
+            fetch('http://your-ip-address', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             })
-        }
+            .then(response => {
+                if (response.ok) {
+                    alert('Запрос успешно отправлен');
+                } else {
+                    alert('Произошла ошибка при отправке запроса');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        });
     </script>
 </body>
 </html>
