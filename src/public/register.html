@@ -41,6 +41,7 @@
             .then(response => {
                 if (response.ok) {
                     response.text().then(data => alert(data));
+                    window.location.href = 'https://87.242.119.17:3000/auth';
                 } else {
                     alert('Произошла ошибка при отправке запроса');
                 }
