@@ -3,7 +3,7 @@ import { AppService } from '../services';
 import * as fs from 'fs';
 import { AccountDto } from 'src/dto/account.dto';
 import { DatabaseService } from '../services';
-import * as bcrypt from 'bcryptjs';
+import * as argon2 from 'argon2';
 
 @Controller()
 export class AppController {
@@ -46,8 +46,7 @@ export class AppController {
   async checkUser(@Body() body: AccountDto) {
     const user = await this.databaseService.getByLogin(body.login);
     if (user) {
-      const saltRounds = 10;
-      const hashedPassword = await bcrypt.hash(body.password, saltRounds);
+      const hashedPassword = await argon2.hash(body.password);
       console.log(hashedPassword);
       console.log(user.password);
       return user.password == hashedPassword ? "Password is correct" : "Wrong password";

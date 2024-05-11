@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AccountDto } from 'src/dto/account.dto';
 import { UserEntity } from 'src/entities';
 import { Repository } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
+import * as argon2 from 'argon2';
 
 @Injectable()
 export class DatabaseService {
@@ -22,8 +22,7 @@ export class DatabaseService {
         const newUser = this.usersRepository.create();
         newUser.login = account.login;
 
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(account.password, saltRounds);
+        const hashedPassword = await argon2.hash(account.password);
 
         newUser.password = hashedPassword;
         this.usersRepository.save(newUser);
