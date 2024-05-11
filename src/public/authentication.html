@@ -41,7 +41,7 @@
             })
             .then(response => {
                 if (response.ok) {
-                    alert(response);
+                    response.text().then(data => alert(data));
                 } else {
                     alert('Произошла ошибка при отправке запроса');
                 }
