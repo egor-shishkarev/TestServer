@@ -24,7 +24,13 @@ export class AppController {
 
   @Get('/register') 
   async registerUser() {
-    // Здесь будет отправляться форма для регистрации
+    try {
+      const content = fs.readFileSync('src/public/register.html', 'utf8');
+      return content;
+    } catch (error) {
+      console.error('Ошибка при чтении файла:', error);
+      return '';
+    }
   }
   
   @Get('/all')
