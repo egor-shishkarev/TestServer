@@ -42,9 +42,9 @@ export class AppController {
   async register(@Body() body: AccountDto) {
     const result = await this.databaseService.add(body);
     if (result) {
-      return "User successfully added";
+      alert("User successfully added");
     } else {
-      return "User with this login already exists";
+      alert("User with this login already exists");
     }
   }
 
