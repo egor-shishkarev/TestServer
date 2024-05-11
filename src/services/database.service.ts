@@ -27,6 +27,7 @@ export class DatabaseService {
 
         newUser.password = hashedPassword;
         this.usersRepository.save(newUser);
+        return true;
     }
 
     async getAll() {
