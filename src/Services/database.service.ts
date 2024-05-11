@@ -20,6 +20,7 @@ export class DatabaseService {
         const hashedPassword = await bcrypt.hash(account.password, saltRounds);
 
         newUser.password = hashedPassword;
+        this.usersRepository.save(newUser);
     }
 
     async getAll() {
