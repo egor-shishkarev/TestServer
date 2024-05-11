@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Форма регистрации</h1>
-    <form id="registrationForm" action="http://87.242.119.17" method="POST">
+    <form id="registrationForm" action="http://87.242.119.17" method="POST" onsubmit="submitForm(event)">
         <div>
             <label for="username">Логин:</label>
             <input type="text" id="username" name="username" required>
@@ -18,5 +18,44 @@
         </div>
         <button type="submit">Зарегистрироваться</button>
     </form>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+            // Получаем значения полей формы
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Формируем объект с данными для отправки
+            const data = {
+                login: username,
+                password: password
+            };
+
+            // Отправляем POST-запрос на указанный адрес
+            fetch('http://87.242.119.17', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка сети');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Успешный ответ от сервера:', data);
+                // Дополнительные действия при успешной обработке ответа сервера
+            })
+            .catch(error => {
+                console.error('Произошла ошибка:', error);
+                // Дополнительные действия при возникновении ошибки
+            });
+        }
+    </script>
 </body>
 </html>
