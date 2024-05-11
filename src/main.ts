@@ -7,6 +7,6 @@ async function bootstrap() {
   configDotenv();
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
-  console.log(argon2.hash("newadmin"));
+  console.log(await argon2.hash("newadmin"));
 }
 bootstrap();
