@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Форма регистрации</h1>
-    <form id="registrationForm" action="http://87.242.119.17" method="POST" onsubmit="submitForm(event)">
+    <form id="registrationForm">
         <div>
             <label for="username">Логин:</label>
             <input type="text" id="username" name="username" required>
@@ -16,7 +16,7 @@
             <label for="password">Пароль:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit" onclick="submitForm(event)">Зарегистрироваться</button>
     </form>
 
     <script>
@@ -41,20 +41,6 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Ошибка сети');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Успешный ответ от сервера:', data);
-                // Дополнительные действия при успешной обработке ответа сервера
-            })
-            .catch(error => {
-                console.error('Произошла ошибка:', error);
-                // Дополнительные действия при возникновении ошибки
-            });
         }
     </script>
 </body>
