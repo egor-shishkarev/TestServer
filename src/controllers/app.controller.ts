@@ -48,6 +48,8 @@ export class AppController {
     if (user) {
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(body.password, saltRounds);
+      console.log(hashedPassword);
+      console.log(user.password);
       return user.password == hashedPassword ? "Password is correct" : "Wrong password";
     } else {
       return "User with this login doesn't exist";
