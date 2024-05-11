@@ -6,7 +6,7 @@
     <title>MyChat</title>
 </head>
 <body>
-    <h1>Зарегистрироваться</h1>
+    <h1>Войти</h1>
     <form id="myForm">
         <div>
             <label for="username">Логин:</label>
@@ -16,7 +16,7 @@
             <label for="password">Пароль:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Войти</button>
     </form>
 
     <script>
@@ -31,7 +31,8 @@
                 password: password
             };
 
-            fetch('http://87.242.119.17:3000', {
+            // Отправляем POST-запрос на нужный IP адрес
+            fetch('http://87.242.119.17:3000/check', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -32,6 +32,17 @@ export class AppController {
       return '';
     }
   }
+
+  @Get('/auth')
+  async authUser() {
+    try {
+      const content = fs.readFileSync('src/public/authentication.html', 'utf8');
+      return content;
+    } catch (error) {
+      console.error('Ошибка при чтении файла:', error);
+      return '';
+    }
+  }
   
   @Get('/all')
   async getAllUsers() {
@@ -53,9 +64,9 @@ export class AppController {
     const user = await this.databaseService.getByLogin(body.login);
     if (user) {
       const isMatch = await bcrypt.compare(body.password, user.password);
-      return isMatch ? "Password is correct" : "Wrong password";
+      return isMatch;
     } else {
-      return "User with this login doesn't exist";
+      return false;
     }
   }
 }
