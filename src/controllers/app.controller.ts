@@ -3,7 +3,7 @@ import { AppService } from '../services';
 import * as fs from 'fs';
 import { AccountDto } from 'src/dto/account.dto';
 import { DatabaseService } from '../services';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 @Controller()
 export class AppController {
@@ -55,5 +55,4 @@ export class AppController {
       return "User with this login doesn't exist";
     }
   }
-
 }
