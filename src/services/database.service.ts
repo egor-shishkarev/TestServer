@@ -34,4 +34,8 @@ export class DatabaseService {
         return await this.usersRepository.find();
     }
 
+    async getByLogin(login: string): Promise<UserEntity | null> {
+        return await this.usersRepository.findOne({ where: {login: login}});
+    }
+
 }
