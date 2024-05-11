@@ -13,6 +13,12 @@ export class DatabaseService {
     ) {}
 
     async add(account: AccountDto) {
+
+        const existingUser = await this.usersRepository.findOne({where: {login: account.login}});
+        if (existingUser) {
+            return false;
+        }
+
         const newUser = this.usersRepository.create();
         newUser.login = account.login;
 
