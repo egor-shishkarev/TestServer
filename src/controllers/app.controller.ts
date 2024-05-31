@@ -13,26 +13,4 @@ export class AppController {
       return '';
     }
   }
-
-  @Get('/page1')
-  async getFirstPage() {
-    try {
-      const content = fs.readFileSync('src/public/page1.html', 'utf8');
-      return content;
-    } catch (error) {
-      console.error('Ошибка при чтении файла:', error);
-      return '';
-    }
-  }
-
-  @Get('/page2')
-  async getSecondPage() {
-    try {
-      const content = fs.readFileSync('src/public/page2.html', 'utf8');
-      return content;
-    } catch (error) {
-      console.error('Ошибка при чтении файла:', error);
-      return '';
-    }
-  }
 }
